@@ -20,8 +20,3 @@ LINK_DIRECTORIES(
 ADD_EXECUTABLE(easylzma_test ${SRCS} ${HDRS})
 
 TARGET_LINK_LIBRARIES(easylzma_test easylzma_s)
-
-GET_TARGET_PROPERTY(binPath easylzma_test LOCATION)
-
-# a test target
-ADD_CUSTOM_TARGET(test ${binPath})

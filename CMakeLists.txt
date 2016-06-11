@@ -7,7 +7,11 @@
 # Igor Pavlov for his hard, high quality work.
 #
 
-CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+CMAKE_MINIMUM_REQUIRED(VERSION 2.8.12)
+
+if (APPLE)
+    set (CMAKE_MACOSX_RPATH ON)
+endif (APPLE)
 
 PROJECT(easylzma)
 
@@ -18,10 +22,12 @@ SET (EASYLZMA_MICRO 8)
 SET (EASYLZMA_DIST_NAME
      "easylzma-${EASYLZMA_MAJOR}.${EASYLZMA_MINOR}.${EASYLZMA_MICRO}")
 
+# Default to Release build
 IF (NOT CMAKE_BUILD_TYPE)
   SET(CMAKE_BUILD_TYPE "Release")
 ENDIF (NOT CMAKE_BUILD_TYPE)
 
+# Inform user if defaulting to Release how to specify Debug
 IF (${CMAKE_BUILD_TYPE} STREQUAL "Release")
   MESSAGE("** for a debug build: cmake -DCMAKE_BUILD_TYPE=Debug ..")
 ENDIF (${CMAKE_BUILD_TYPE} STREQUAL "Release")

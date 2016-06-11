@@ -57,3 +57,16 @@ FOREACH (header ${PUB_HDRS})
   ADD_CUSTOM_COMMAND(TARGET easylzma_s POST_BUILD
       COMMAND ${CMAKE_COMMAND} -E copy_if_different ${header} ${incDir})
 ENDFOREACH (header ${PUB_HDRS})
+
+# In addition, add a header installation for the "install" target
+install (FILES ${PUB_HDRS}
+    DESTINATION include/easylzma
+    PERMISSIONS OWNER_READ OWNER_WRITE GROUP_READ WORLD_READ
+)
+
+# In addition, add a library installation for the "install" target
+install (TARGETS easylzma_s easylzma
+    DESTINATION lib
+    PERMISSIONS OWNER_READ OWNER_WRITE OWNER_EXECUTE GROUP_READ GROUP_EXECUTE
+        WORLD_READ WORLD_EXECUTE
+)
